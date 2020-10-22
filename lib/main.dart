@@ -2,11 +2,18 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(
-    MaterialApp(home: Home()),
+    MaterialApp(home: Card()),
   );
 }
 
-class Home extends StatelessWidget {
+class Card extends StatefulWidget {
+  @override
+  _CardState createState() => _CardState();
+}
+
+class _CardState extends State<Card> {
+  int cardLevel = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,6 +22,14 @@ class Home extends StatelessWidget {
           centerTitle: true,
           backgroundColor: Colors.grey[850],
         ),
+        floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              setState(() {
+                cardLevel += 1;
+              });
+            },
+            child: Icon(Icons.add),
+            backgroundColor: Colors.grey[800]),
         body: Padding(
             padding: EdgeInsets.fromLTRB(30.0, 40.0, 30.0, 0.0),
             child: Column(
@@ -40,7 +55,7 @@ class Home extends StatelessWidget {
                 Text('CURRENT LEVEL',
                     style: TextStyle(color: Colors.grey, letterSpacing: 2.0)),
                 SizedBox(height: 10.0),
-                Text('18',
+                Text('$cardLevel',
                     style: TextStyle(
                         color: Colors.amberAccent[200],
                         letterSpacing: 2.0,
